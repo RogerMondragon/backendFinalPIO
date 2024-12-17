@@ -7,7 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://djrogerm1052:Roger.Mondragon2025@proyectofinal.hbphd.mongodb.net/', {
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/my-app';
+
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -36,6 +38,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.listen(4000, () => {
-  console.log('Server is running on port 4000');
+app.listen(process.env.PORT || 4000, () => {
+  console.log('Server is running');
 });
